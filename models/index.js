@@ -1,10 +1,12 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-mongoose.set("debug", true);
+mongoose.set('debug', true)
 
-mongoose.Promise = Promise;
+mongoose.Promise = Promise
 
 mongoose.connect(`mongodb://${process.env.MONGOHOST}/${process.env.DATABASENAME}`, {
-    keepAlive: true,
-    useMongoClient: true
-});
+  keepAlive: true,
+  useMongoClient: true
+})
+
+module.exports.User = require('./user')

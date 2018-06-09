@@ -1,32 +1,33 @@
-const express = require("express");
-const cors = require("cors");
-const logger = require("morgan");
-const bodyParser = require("body-parser");
-const env = require("dotenv").config();
-// const debug = require('debug')
+require('dotenv').config()
+const express = require('express')
+const cors = require('cors')
+const logger = require('morgan')
+const bodyParser = require('body-parser')
 
-const errorHandler = require("./handlers/error");
+const errorHandler = require('./handlers/error')
+const authRoutes = require('./routes/auth')
 
-const app = express();
+const app = express()
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000
 
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors())
+app.use(bodyParser.json())
 
-app.get("/", function(req, res, next){
-    res.send("Hello world");
-});
+app.get('/', function (req, res, next) {
+  res.send('Hello world')
+})
 
-app.use(function(req, res, next){
-    let err = new Error("Not Found");
-    err.status = 404;
-    next(err);
-});
+app.use('/api/auth', authRoutes)
 
-app.use(errorHandler);
+app.use(function (req, res, next) {
+  let err = new Error('Not Found')
+  err.status = 404
+  next(err)
+})
 
-app.listen(port, function(){
-    // debug('Listening on ' + port)
-    console.log("Listening on " + port);
-});
+app.use(errorHandler)
+
+app.listen(port, function () {
+  console.log('Listening on ' + port)
+})
