@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const env = require("dotenv").config();
 // const debug = require('debug')
 
-const errorHandler = require("./controllers/error");
+const errorHandler = require("./handlers/error");
 
 const app = express();
 
