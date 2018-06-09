@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 
 const errorHandler = require('./handlers/error')
 const authRoutes = require('./routes/auth')
+const messageRoutes = require('./routes/messages')
 
 const app = express()
 
@@ -17,6 +18,7 @@ app.get('/', function (req, res, next) {
 })
 
 app.use('/api/auth', authRoutes)
+app.use('/api/users/:id/messages', messageRoutes)
 
 app.use(function (req, res, next) {
   let err = new Error('Not Found')
