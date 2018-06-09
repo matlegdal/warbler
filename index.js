@@ -9,8 +9,6 @@ const authRoutes = require('./routes/auth')
 
 const app = express()
 
-const port = process.env.PORT || 3000
-
 app.use(cors())
 app.use(bodyParser.json())
 
@@ -28,6 +26,7 @@ app.use(function (req, res, next) {
 
 app.use(errorHandler)
 
+const port = process.env.PORT || 3000
 app.listen(port, function () {
   console.log('Listening on ' + port)
 })
